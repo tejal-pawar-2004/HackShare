@@ -1,0 +1,107 @@
+<% layout("/layouts/boilerplates") %>
+<body>
+  <section class="py-5 bg-custom-light">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="display-4 fw-bold mb-4">Share Your Hackathon Journey</h1>
+          <p class="lead mb-4">
+            Share your experiences, and discover upcoming hackathons to
+            participate in.
+          </p>
+          <div class="d-flex gap-3">
+            <a href="/signup" class="btn btn-custom-primary btn-lg px-4"
+              >Get Started</a
+            >
+            <a href="/hackathons" class="btn btn-custom-outline btn-lg px-4"
+              >Explore Hackathons</a
+            >
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img
+            src="/assets/hackathon.jpg"
+            alt="Hackathon illustration"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold mb-3">Why Join HackShare?</h2>
+        <p class="lead text-muted">
+          Discover the benefits of being part of our community
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center p-4">
+              <div
+                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                style="width: 64px; height: 64px"
+              >
+                <i class="fas fa-lightbulb fa-xl text-custom-primary"></i>
+              </div>
+              <h4 class="mb-3">Share Solutions</h4>
+              <p class="text-muted">
+                Document your hackathon projects and help others learn from your
+                approach.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center p-4">
+              <div
+                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                style="width: 64px; height: 64px"
+              >
+                <i class="fas fa-calendar-alt fa-xl text-custom-primary"></i>
+              </div>
+              <h4 class="mb-3">Discover Events</h4>
+              <p class="text-muted">
+                Find upcoming hackathons that match your interests and skill
+                level.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center p-4">
+              <div
+                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
+                style="width: 64px; height: 64px"
+              >
+                <i class="fas fa-users fa-xl text-custom-primary"></i>
+              </div>
+              <h4 class="mb-3">Build Community</h4>
+              <p class="text-muted">
+                Connect with like-minded developers and potential teammates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Hackathons Section -->
+  <section class="py-5 bg-custom-light">
+    <div class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="fw-bold mb-0">Upcoming Hackathons</h2>
+        <a href="/hackathons" class="btn btn-custom-outline">View All</a> 
+      </div>
+    </div>
+  </section>
+</body>

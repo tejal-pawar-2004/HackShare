@@ -1,0 +1,72 @@
+<% layout("/layouts/boilerplates") %>
+
+<!-- Login Hero -->
+<section class="py-2 bg-custom-light">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h1 class="display-4 fw-bold mb-4">Welcome Back</h1>
+        <p class="lead mb-4">
+          Login to access your hackathon experiences and upcoming events.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Login Form -->
+<section class="py-2">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card card-custom">
+          <div class="card-body p-5">
+            <h2 class="fw-bold mb-4 text-center">Login to Your Account</h2>
+
+            <form action="/login" method="POST">
+              <div class="mb-4">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control form-control-custom"
+                  id="username"
+                  name="username"
+                  required
+                />
+              </div>
+
+              <div class="mb-4">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control form-control-custom"
+                  id="loginPassword"
+                  name="password"
+                  required
+                />
+                <div class="text-end mt-2">
+                  <a href="" class="text-decoration-none small"
+                    >Forgot password?</a
+                  >
+                </div>
+              </div>
+
+              <div class="d-grid mb-4">
+                <button type="submit" class="btn btn-custom-primary">
+                  Login
+                </button>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-0">
+                  Don't have an account?
+                  <a href="/signup" class="text-decoration-none">Register</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<% layout("/layouts/boilerplates") %> <% const options = { month: "short",
+day:"numeric" }; const start =
+hackathon.startDate.toLocaleDateString("en-US",options); const end =
+hackathon.endDate.toLocaleDateString("en-US", options); const year =
+hackathon.endDate.getFullYear(); %>
+<div class="row mt-3">
+  <div class="col-8 offset-3">
+    <h3><%= hackathon.title %></h3>
+  </div>
+  <div class="card col-6 offset-3">
+    <img
+      src="/assets/hackathon.jpg"
+      class="card-img-top show-img"
+      alt="listing_image"
+    />
+    <div class="card-body">
+      <h5><b><%= hackathon.name %></b></h5>
+      <p class="card-text"><%= hackathon.description %></p>
+      <p class="card-text"><b>Organizer : </b><%= hackathon.organizer %></p>
+      <p class="card-text">
+        <b>Date : </b><%= start %> - <%= end %>, <%= year %>
+      </p>
+      <p class="card-text">
+        <b>Deadline : </b><%=
+        hackathon.registrationDeadline.toLocaleDateString("en-US", { day:
+        "numeric", month: "short", year: "numeric" }) %>
+      </p>
+      <p class="card-text"><b>Location : </b><%= hackathon.location %></p>
+      <p class="card-text">
+        <b>Registration : </b
+        ><a
+          href="/register/<%= hackathon._id %>"
+          class="text-decoration-none text-primary fw-semibold"
+        >
+          Register Now</a
+        >
+      </p>
+      <p class="card-text"><%= hackathon.tags %></p>
+      <p class="card-text"><b>Status : </b><%= hackathon.status %></p>
+    </div>
+  </div>
+</div>

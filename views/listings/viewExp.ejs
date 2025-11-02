@@ -1,0 +1,176 @@
+<% layout("/layouts/boilerplates") %>
+
+<section class="py-3 bg-custom-light">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h1 class="display-4 fw-bold mb-4">Learn From Others</h1>
+        <p class="lead mb-4">
+          Discover real hackathon experiences and solutions from others.
+        </p>
+        <div class="d-flex gap-3">
+          <button
+            class="btn btn-custom-primary px-4"
+            data-bs-toggle="modal"
+            data-bs-target="#filterModal"
+          >
+            <i class="fas fa-filter me-2"></i>Filters
+          </button>
+          <div class="dropdown">
+            <button
+              class="btn btn-custom-outline dropdown-toggle px-4"
+              type="button"
+              id="sortDropdown"
+              data-bs-toggle="dropdown"
+            >
+              <i class="fas fa-sort me-2"></i>Sort By
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Most Recent</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Hackathon Name (A-Z)</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Hackathon Name (Z-A)</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img
+          src="/assets/hackathon.jpg"
+          alt="View experiences illustration"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-5">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0">
+          <i class="fas fa-search text-muted"></i>
+        </span>
+        <input
+          type="text"
+          class="form-control form-control-custom border-start-0"
+          placeholder="Search experiences..."
+        />
+      </div>
+    </div>
+    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+      <form method="GET" action="experiance/shareExp">
+        <button class="btn btn-custom-primary">
+          <i class="fas fa-plus me-2"></i>Share Yours
+        </button>
+      </form>
+    </div>
+  </div>
+  <div id="hackathonContainer" class="row g-4">
+    <div class="row g-4">
+      <% for(let experiance of allExperiance) { %>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-custom h-100">
+          <div class="position-relative">
+            <img
+              src="/assets/hackathon1.jpg"
+              class="card-img-top"
+              alt="Hackathon image"
+            />
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h5 class="card-title mb-0"><%= experiance.hackathonName %></h5>
+            </div>
+            <p class="card-text text-muted mb-3">
+              Project : <%= experiance.projectTitle %>
+            </p>
+
+            <div class="d-grid">
+              <a
+                href="/experiance/<%= experiance._id %>"
+                class="btn btn-custom-primary"
+                >View</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.querySelector(".form-control-custom");
+    const cards = document.querySelectorAll(".card");
+    const sortDropdown = document.getElementById("sortDropdown");
+    const sortItems = document.querySelectorAll(".dropdown-item");
+
+    // 🔍 SEARCH FUNCTIONALITY
+    searchInput.addEventListener("keyup", () => {
+      const searchText = searchInput.value.toLowerCase().trim();
+      cards.forEach((card) => {
+        const hackathonName = card
+          .querySelector(".card-title")
+          .textContent.toLowerCase();
+        const projectTitle = card
+          .querySelector(".card-text")
+          .textContent.toLowerCase();
+        if (hackathonName.includes(searchText) || projectTitle.includes(searchText)) {
+          card.parentElement.style.display = "block";
+        } else {
+          card.parentElement.style.display = "none";
+        }
+      });
+    });
+
+    // 🔽 SORT FUNCTIONALITY
+    sortItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        const option = e.target.textContent.trim();
+        sortCards(option);
+      });
+    });
+
+    function sortCards(option) {
+      const container = document.querySelector("#hackathonContainer .row");
+      const cardArray = Array.from(container.children);
+
+      if (option === "Hackathon Name (A-Z)") {
+        cardArray.sort((a, b) =>
+          a.querySelector(".card-title").textContent
+            .localeCompare(b.querySelector(".card-title").textContent)
+        );
+      } else if (option === "Hackathon Name (Z-A)") {
+        cardArray.sort((a, b) =>
+          b.querySelector(".card-title").textContent
+            .localeCompare(a.querySelector(".card-title").textContent)
+        );
+      } else if (option === "Most Recent") {
+        cardArray.reverse(); // Assuming recent entries are last added
+      }
+
+      // Re-append sorted cards
+      cardArray.forEach((card) => container.appendChild(card));
+    }
+
+    // 🧩 FILTER FUNCTIONALITY (Basic Example)
+    // Example: You can open a modal with checkboxes for categories or tech stacks.
+    // Below is a simple simulated filter using a hardcoded keyword.
+    const filterButton = document.querySelector("[data-bs-target='#filterModal']");
+    if (filterButton) {
+      filterButton.addEventListener("click", () => {
+        console.log("Filter modal opened — implement dynamic filters here.");
+        // You can enhance by filtering based on tags, technologies, etc.
+      });
+    }
+  });
+</script>

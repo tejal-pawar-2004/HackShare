@@ -1,0 +1,213 @@
+/* Custom Colors */
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary: #10b981;
+  --secondary-dark: #0d9f6e;
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --light: #f9fafb;
+  --dark: #111827;
+  --gray: #6b7280;
+  --light-gray: #e5e7eb;
+  --white: #ffffff;
+  --danger: #ef4444;
+}
+
+/* Base Styles */
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--dark);
+  /* background-color: var(--light); */
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* Navbar */
+.navbar-custom {
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Buttons */
+.btn-custom-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transition: all 0.2s;
+}
+
+.btn-custom-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: var(--white);
+}
+
+.btn-custom-secondary {
+  background-color: var(--secondary);
+  color: var(--white);
+  border-color: var(--secondary);
+  transition: all 0.2s;
+}
+
+.btn-custom-secondary:hover {
+  background-color: var(--secondary-dark);
+  border-color: var(--secondary-dark);
+  color: var(--white);
+}
+
+.btn-custom-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+  transition: all 0.2s;
+}
+
+.btn-custom-outline:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-custom-danger-outline {
+  background-color: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+  transition: all 0.2s;
+}
+
+.btn-custom-danger-outline:hover {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+/* Cards */
+.card {
+  border: none;
+}
+
+.card-custom {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.card-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Forms */
+.form-control-custom {
+  border: 1px solid var(--light-gray);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control-custom:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+}
+
+/* Footer */
+.footer-custom {
+  background-color: var(--white);
+  border-top: 1px solid var(--light-gray);
+}
+
+.text-custom-primary {
+  color: var(--primary);
+}
+
+.text-custom-secondary {
+  color: var(--secondary);
+}
+
+.border-custom-light {
+  border-color: var(--light-gray);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animation for hover effects */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal customizations */
+.modal-content {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+/* Badge customizations */
+.badge {
+  padding: 0.35em 0.65em;
+  font-weight: 500;
+}
+
+/* Input group customizations */
+.input-group-text {
+  background-color: var(--white);
+  border-right: none;
+}
+
+/* Dropdown customizations */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: var(--light);
+  color: var(--primary);
+}
+
+/* Pagination customizations */
+.page-link {
+  color: var(--primary);
+  border: 1px solid var(--light-gray);
+}
+
+.page-item.active .page-link {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.page-link:hover {
+  color: var(--primary-dark);
+  background-color: var(--light);
+}

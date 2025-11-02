@@ -1,0 +1,70 @@
+<style>
+  .navbar .navbar-brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: #4338CA !important;
+  }
+
+  .navbar .nav-item a {
+    background: none !important;
+    border: none !important;
+    color: #555 !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .navbar .nav-item a:hover {
+    color: #4338CA !important;
+  }
+
+  .navbar .nav-item a.active {
+    color: #4338CA !important;
+    font-weight: 600;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-custom py-3">
+  <div class="container">
+    <a class="navbar-brand text-custom-primary fw-bold" href="/home">HackShare</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/hackathons">Hackathons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/experiance">View Experience</a>
+        </li>
+        <li class="nav-item">
+          <a href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="/contact">Contact</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <% if(!currUser) { %>
+        <a href="/login" class="btn btn-custom-outline me-2">Login</a>
+        <a href="/signup" class="btn btn-custom-primary">Register</a>
+        <% } %>
+        <% if(currUser) { %>
+        <a href="/logout" class="btn btn-custom-primary">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

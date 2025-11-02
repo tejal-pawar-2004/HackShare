@@ -1,0 +1,131 @@
+<% layout("/layouts/boilerplates") %>
+<style>
+  #searchInput {
+    transition: 0.3s;
+  }
+  #searchInput:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25);
+  }
+</style>
+
+<section class="py-5 bg-custom-light">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h1 class="display-4 fw-bold mb-4">Find Your Next Challenge</h1>
+        <p class="lead mb-4">
+          Browse upcoming hackathons and register to participate.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <img
+          src="/assets/hackathon.jpg"
+          alt="Hackathons illustration"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-2">
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-search text-muted"></i>
+          </span>
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control form-control-custom border-start-0"
+            placeholder="Search hackathons..."
+          />
+        </div>
+      </div>
+    </div>
+
+    <div id="hackathonContainer" class="row g-4">
+      <div class="row g-4">
+        <% for(let hackathons of allHackathons) { %>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="position-relative">
+              <img
+                src="/assets/hackathon1.jpg"
+                class="card-img-top"
+                alt="Hackathon image"
+              />
+            </div>
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-start mb-3"
+              >
+                <h5 class="card-title mb-0"><%= hackathons.name %></h5>
+                <span class="badge bg-secondary bg-opacity-10 text-secondary"
+                  ><%= hackathons.status %></span
+                >
+              </div>
+              <p class="card-text text-muted mb-3">
+                <%= hackathons.description %>
+              </p>
+
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <div>
+                  <small class="text-muted d-block">
+                    <i class="far fa-calendar-alt me-1"></i>
+                    <% const options = { month: "short", day: "numeric" }; const
+                    start = hackathons.startDate.toLocaleDateString("en-US",
+                    options); const end =
+                    hackathons.endDate.toLocaleDateString("en-US", options);
+                    const year = hackathons.endDate.getFullYear(); %> <%= start
+                    %> - <%= end %>, <%= year %>
+                  </small>
+                  <small class="text-muted">
+                    <i class="far fa-clock me-1"></i> Register by: <%=
+                    hackathons.registrationDeadline.toLocaleDateString("en-IN")
+                    %>
+                  </small>
+                </div>
+              </div>
+              <div class="d-grid">
+                <a
+                  href="/hackathons/<%= hackathons._id %>"
+                  class="btn btn-custom-primary"
+                  >Register Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const hackathonContainer = document.getElementById("hackathonContainer");
+    const cards = hackathonContainer.querySelectorAll(".card");
+
+    searchInput.addEventListener("keyup", () => {
+      const searchText = searchInput.value.toLowerCase().trim();
+
+      cards.forEach((card) => {
+        const name = card.querySelector(".card-title").textContent.toLowerCase();
+        const description = card.querySelector(".card-text").textContent.toLowerCase();
+
+        if (name.includes(searchText) || description.includes(searchText)) {
+          card.parentElement.style.display = "block"; // show column
+        } else {
+          card.parentElement.style.display = "none"; // hide column
+        }
+      });
+    });
+  });
+</script>

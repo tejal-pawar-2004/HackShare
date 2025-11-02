@@ -1,0 +1,113 @@
+<% layout("/layouts/boilerplates") %>
+
+<section class="py-2 bg-custom-light">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h1 class="display-4 fw-bold mb-4">Register for Hackathon</h1>
+        <p class="lead mb-4">
+          Join the coding challenge and showcase your skills
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <img src="/assets/hackathon.jpg" alt="Hackathon" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-2">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-custom">
+          <div class="card-body p-5">
+            <h2 class="fw-bold mb-4 text-center">Register Here!</h2>
+            <form
+              action="/register/<%= hackathon._id %>"
+              method="POST"
+              novalidate
+              class="needs-validation"
+            >
+              <!-- Team Name -->
+              <div class="mb-4">
+                <label for="teamName" class="form-label">Team Name</label>
+                <input
+                  type="text"
+                  class="form-control form-control-custom"
+                  id="teamName"
+                  name="teamName"
+                  required
+                />
+                <div class="invalid-feedback">Please enter the Team Name.</div>
+              </div>
+
+              <!-- Team Members -->
+              <div id="teamMembersContainer">
+                <h5 class="mb-3">Team Members</h5>
+                <div class="team-member mb-4">
+                  <input
+                    type="text"
+                    class="form-control form-control-custom mb-2"
+                    name="teamMembers[0][name]"
+                    placeholder="Member Name"
+                    required
+                  />
+                  <input
+                    type="text"
+                    class="form-control form-control-custom mb-2"
+                    name="teamMembers[0][yearOfDegree]"
+                    placeholder="Year of Degree (e.g. 3rd Year)"
+                  />
+                  <input
+                    type="text"
+                    class="form-control form-control-custom"
+                    name="teamMembers[0][collegeName]"
+                    placeholder="College Name"
+                  />
+                </div>
+              </div>
+
+              <!-- Add Member Button -->
+              <button
+                type="button"
+                id="addMemberBtn"
+                class="btn btn-outline-secondary mb-4"
+              >
+                + Add Member
+              </button>
+
+              <!-- Submit -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-custom-primary btn-lg">
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let memberIndex = 1;
+  document
+    .getElementById("addMemberBtn")
+    .addEventListener("click", function () {
+      const container = document.getElementById("teamMembersContainer");
+      const div = document.createElement("div");
+      div.classList.add("team-member", "mb-4");
+      div.innerHTML = `
+      <input type="text" class="form-control form-control-custom mb-2" 
+             name="teamMembers[${memberIndex}][name]" placeholder="Member Name" required />
+      <input type="text" class="form-control form-control-custom mb-2" 
+             name="teamMembers[${memberIndex}][yearOfDegree]" placeholder="Year of Degree" />
+      <input type="text" class="form-control form-control-custom" 
+             name="teamMembers[${memberIndex}][collegeName]" placeholder="College Name" />
+    `;
+      container.appendChild(div);
+      memberIndex++;
+    });
+</script>

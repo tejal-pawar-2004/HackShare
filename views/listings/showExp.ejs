@@ -1,0 +1,92 @@
+<% layout("/layouts/boilerplates") %>
+<div
+  class="d-flex justify-content-center align-items-center mt-4"
+  style="min-height: 100vh"
+>
+  <div
+    class="card shadow p-4"
+    style="max-width: 800px; width: 100%; text-align: left"
+  >
+    <div class="card-body">
+      <!-- Title -->
+      <h3 class="mb-3"><%= experiance.hackathonName %></h3>
+      <i class="mb-3">Created By <%= experiance.owner.username %></i>
+      <br>
+      <!-- Date & Location -->
+      <p class="text-muted mb-3">
+        <i class="far fa-calendar-alt me-2"></i>
+        <%= experiance.hackathonDate.toLocaleDateString("en-IN") %> |
+        <i class="fas fa-map-marker-alt ms-2"></i>
+        <%= experiance.hackathonLocation %>
+      </p>
+
+      <!-- Project Title -->
+      <h4 class="mb-3"><%= experiance.projectTitle %></h4>
+
+      <!-- Technologies -->
+      <div class="mb-3">
+        <% experiance.technologies.forEach(tech => { %>
+        <span class="badge bg-primary bg-opacity-10 text-primary me-2"
+          ><%= tech %></span
+        >
+        <% }) %>
+      </div>
+
+      <!-- Problem Statement -->
+      <h5 class="fw-bold">Problem Statement</h5>
+      <p class="mb-4"><%= experiance.problemStatement %></p>
+
+      <!-- Solution -->
+      <h5 class="fw-bold">Our Solution</h5>
+      <p class="mb-4"><%= experiance.solution %></p>
+
+      <!-- Screenshots -->
+      <% if (experiance.screenshots && experiance.screenshots.length > 0) { %>
+      <div class="row g-3 mb-4">
+        <% experiance.screenshots.forEach(img => { %>
+        <div class="col-4">
+          <img
+            src="<%= img %>"
+            class="img-fluid rounded"
+            alt="Project screenshot"
+          />
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+
+      <!-- Challenges -->
+      <h5 class="fw-bold">Challenges Faced</h5>
+      <p class="mb-4"><%= experiance.challenges %></p>
+
+      <!-- Learnings -->
+      <h5 class="fw-bold">Key Learnings</h5>
+      <p><%= experiance.learnings %></p>
+
+      <h5 class="fw-bold">Our Team</h5>
+      <p><%= experiance.teamMembers %></p>
+
+      <h5 class="fw-bold">Project Link</h5>
+      <p><%= experiance.projectLink %></p>
+      <% if(currUser && currUser._id.equals(experiance.owner._id)) { %>
+      <div class="d-flex gap-3">
+        <a
+          href="/experiance/<%= experiance._id %>/edit"
+          class="btn btn-custom-outline"
+        >
+          Edit Experience
+        </a>
+
+        <form
+          method="POST"
+          action="/experiance/<%= experiance._id %>?_method=DELETE"
+        >
+          <button type="submit" class="btn btn-custom-danger-outline">
+            Delete Experience
+          </button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
